@@ -1,0 +1,49 @@
+<div class="container mx-auto p-4 max-w-6xl">
+  <div class="flex items-center justify-between mb-6">
+    <h1 class="text-3xl font-bold">Archivadas</h1>
+  </div>
+
+  <div class="space-y-6">
+    <section>
+      <h2 class="text-2xl font-semibold mt-2 mb-4">Notas archivadas</h2>
+
+@if (loading) {
+      <div class="py-8 text-center">Cargando notas archivadas...</div>
+}
+
+      <!-- Lista de notas: grid responsive con Tailwind -->
+@if (notes.length) {
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        @for (note of notes; track note.id) {
+          <mat-card
+                  class="note-card bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-lg transform hover:-translate-y-1 transition duration-200 overflow-hidden">
+
+            <div class="p-4 md:p-5 flex-1 flex flex-col">
+              <mat-card-title class="text-lg font-semibold text-slate-900 mb-2 truncate">{{ note.title }}</mat-card-title>
+              <mat-card-content class="text-slate-600 text-sm mb-4 line-clamp-4">{{ note.content }}</mat-card-content>
+              <div class="mt-auto"></div>
+            </div>
+
+            <mat-card-actions class="flex items-center justify-between gap-3 px-4 py-3 border-t border-gray-50 bg-white">
+              <div class="text-xs text-gray-400">{{ note.updatedAt ? (note.updatedAt | date:'short') : '' }}</div>
+              <div class="flex items-center gap-2">
+                <button mat-button color="primary" class="text-indigo-600 hover:bg-indigo-50 rounded-md px-2 py-1 focus:outline-none" (click)="restore(note)">Restaurar</button>
+                <button mat-icon-button matTooltip="Eliminar" (click)="delete(note)">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </div>
+            </mat-card-actions>
+          </mat-card>
+        }
+      </div>
+} @else {
+        <div class="empty-state text-center py-8">
+          <div class="icon w-16 h-16 mx-auto mb-3 rounded-md bg-gradient-to-br from-gray-50 to-white flex items-center justify-center text-gray-400 text-2xl">
+            🗄️
+          </div>
+          <p class="text-gray-600">No hay notas archivadas.</p>
+        </div>
+}
+    </section>
+  </div>
+</div>

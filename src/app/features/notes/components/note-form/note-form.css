@@ -1,0 +1,48 @@
+/* Estilos para el formulario de notas: añade margen/padding y mejora apariencia */
+
+:host {
+  display: block;
+  margin: 0.75rem 0; /* separación vertical entre componentes */
+  padding: 0;
+}
+
+/* El wrapper principal (el primer div del template) recibe un poco más de padding
+   y una sombra ligera para que destaque sobre el fondo */
+:host > div {
+  padding: 1rem;
+  margin: 0 auto;
+  box-shadow: 0 6px 18px rgba(9, 30, 66, 0.08);
+  background-color: #ffffff;
+  border-radius: 0.75rem;
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+:host > div:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 26px rgba(9, 30, 66, 0.12);
+}
+
+/* Formulario con espacio consistente entre campos */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Asegurar que los mat-form-field ocupen todo el ancho disponible */
+mat-form-field {
+  width: 100%;
+}
+
+/* Ajustes finos para acciones */
+mat-card-actions,
+.app-actions,
+:host ::ng-deep .mat-form-field-wrapper {
+  padding-top: 0.25rem;
+}
+
+@media (min-width: 768px) {
+  :host > div {
+    padding: 1.5rem;
+  }
+}

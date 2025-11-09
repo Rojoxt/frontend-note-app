@@ -1,0 +1,41 @@
+@use '@angular/material' as mat;
+@import "tailwindcss";
+
+$theme: mat.define-theme((
+  color: (
+    primary: mat.$violet-palette,
+    tertiary: mat.$azure-palette,
+  ),
+));
+
+:root {
+  @include mat.toolbar-overrides((
+    container-background-color: #1E1F22,
+    container-text-color: #ffffff,
+  ));
+
+  /* CSS variables used by header styles */
+  --toolbar-text: #ffffff;
+  --toolbar-bg-start: rgba(14,165,164,0.12);
+  --toolbar-bg-mid: rgba(30,41,59,0.6);
+  --toolbar-bg-end: rgba(0,0,0,1);
+}
+
+@include mat.all-component-themes($theme);
+
+html {
+  @include mat.theme((
+    color: mat.$blue-palette,
+    typography: Roboto,
+    density: 0,
+  ));
+}
+
+.example-bright-container {
+  @include mat.theme((
+    color: mat.$cyan-palette,
+  ));
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
